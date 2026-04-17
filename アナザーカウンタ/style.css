@@ -1,0 +1,123 @@
+// ==========================
+// 初期データ
+// ==========================
+const initialState = {
+    hp: 180,
+    maru: 0,
+    shield: 0,
+    defense: 0,
+    circles: [0, 0, 0, 0]
+};
+
+// プレイヤーデータ
+let players = [
+    JSON.parse(JSON.stringify(initialState)),
+    JSON.parse(JSON.stringify(initialState))
+];
+
+// ==========================
+// UI生成
+// ==========================
+function createPlayerUI(playerIndex) {
+    const player = players[playerIndex];
+    const container = document.getElementById(`player${playerIndex + 1}`);
+
+    container.innerHTML = "";
+
+    // 上部（色丸）
+    const circleArea = document.createElement("div");
+    circleArea.className = "circles";
+
+    const colors = ["red", "blue", "green", "gold"];
+
+    player.circles.forEach((value, i) => {
+        const div = document.createElement("div");
+        div.className = "circle";
+
+        div.innerHTML = `
+            <button onclick="changeCircle(${playerIndex}, ${i}, 1)">＋</button>
+            <div class="ball" style="background:${colors[i]}">${value}</div>
+            <button onclick="changeCircle(${playerIndex}, ${i}, -1)">−</button>
+        `;
+
+        circleArea.appendChild(div);
+    });
+
+    // 下部（ステータス）
+    const statsArea = document.createElement("div");
+    statsArea.className = "stats";
+
+    statsArea.innerHTML = `
+        ${createStatHTML(playerIndex, "hp", "HP", 10)}
+        ${createStatHTML(playerIndex, "maru", "〇", 1)}
+        ${createStatHTML(playerIndex, "shield", "盾", 10)}
+        ${createStatHTML(playerIndex, "defense", "防", 10)}
+    `;
+
+    container.appendChild(circleArea);
+    container.appendChild(statsArea);
+}
+
+// ステータスHTML生成
+function createStatHTML(playerIndex, key, label, step) {
+    const value = players[playerIndex][key];
+
+    return `
+        <div class="stat">
+            <button onclick="changeStat(${playerIndex}, '${key}', ${step})">＋</button>
+            <div>${label}</div>
+            <div>${value}</div>
+            <button onclick="changeStat(${playerIndex}, '${key}', ${-step})">−</button>
+        </div>
+    `;
+}
+
+// ==========================
+// 操作系
+// ==========================
+
+// ステータス変更
+function changeStat(playerIndex, key, amount) {
+    players[playerIndex][key] += amount;
+    render();
+}
+
+// 色丸変更
+function changeCircle(playerIndex, index, amount) {
+    players[playerIndex].circles[index] += amount;
+    render();
+}
+
+// サイコロ
+function rollDice() {
+    const result = Math.floor(Math.random() * 6) + 1;
+    document.getElementById("diceResult").innerText = result;
+}
+
+// リセット確認
+function confirmReset() {
+    if (confirm("本当にリセットしますか？")) {
+        resetAll();
+    }
+}
+
+// リセット処理
+function resetAll() {
+    players = [
+        JSON.parse(JSON.stringify(initialState)),
+        JSON.parse(JSON.stringify(initialState))
+    ];
+    document.getElementById("diceResult").innerText = "🎲";
+    render();
+}
+
+// ==========================
+// 描画
+// ==========================
+function render() {
+    createPlayerUI(0);
+    createPlayerUI(1);
+}
+
+// 初期表示
+render();
