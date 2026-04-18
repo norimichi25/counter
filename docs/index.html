@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>カウンター</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+
+</head>
+
+
+<body>
+
+  <h1>カウンター</h1>
+  <div id="count">0</div>
+
+    <button class="btn" onclick="add()">＋1</button>
+    <button class="btn" onclick="sub()">−1</button>
+    <button class="btn" onclick="reset()">リセット</button>
+    <br>
+    <button class="btn" id="dice" onclick="dice()">🎲</button>
+
+  <div id="diceResult"></div>
+
+  <script>
+    let count = 0;
+
+    function update() {
+      document.getElementById("count").innerText = count;
+    }
+
+    function add() {
+      count++;
+      update();
+    }
+
+    function sub() {
+      count--;
+      update();
+    }
+
+    function reset() {
+      count = 0;
+      update();
+    }
+
+    function dice() {
+      const result = Math.floor(Math.random() * 6) + 1;
+      document.getElementById("diceResult").innerText = "🎲 " + result;
+    }
+  </script>
+
+</body>
+</html>
