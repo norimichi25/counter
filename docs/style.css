@@ -1,18 +1,33 @@
 body {
-      text-align: center;
-      font-family: sans-serif;
-    }
-
+  text-align: center;
+  font-family: sans-serif;
+}
 
 #left, #right {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
 }
 
 .count {
     font-size: 50px;
-    margin: 5px;
+    font-weight: bold; 
+    margin: 2px;
+}
+.count.small {
+  font-size: 25px;
+}
+
+.top {
+  margin-bottom: 40px;
+}
+
+.text {
+    font-size: 30px;
+    font-weight: bold; 
+    margin: 2px;
+    color: green; /* 中の色 */
+    -webkit-text-stroke: 1px black; /* 枠線 */
 }
 
 .container {
@@ -25,15 +40,49 @@ body {
     padding: 20px 20px;
 } */
 
-.btn {
+.btn_add {
   font-size: 20px;
   padding: 10px 20px;
   border-radius: 8px;
-  margin: 5px;
+  margin: 2px;
   color: red;
+}
+.btn_add.small {
+  font-size: 10px;
+  padding: 5px 10px;
+  border-radius: 8px;
+  margin: 2px;
+  color: red;
+}
+.btn_sub {
+  font-size: 20px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  margin: 2px;
+  color: blue;
+}
+.btn_sub.small {
+  font-size: 10px;
+  padding: 5px 10px;
+  border-radius: 8px;
+  margin: 2px;
+  color: blue;
 }
 
 #dice {
   background-color: white;
   font-size: 50px;
+  margin: 20px;
+  margin-top: 80px;
+}
+
+.diceresult {
+    font-size: 50px;
+    font-weight: bold; 
+    margin: 2px;
+}
+.reset {
+    font-size: 30px;
+    font-weight: bold; 
+    margin: 2px;
 }

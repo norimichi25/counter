@@ -2,17 +2,19 @@ let counts = {};
 let initialValues = {};
 
 // ===== 左右共通のブロック生成 =====
-function createCounter(id, label, initial, step) {
+function createCounter(id, label, initial, step, size = "normal", color = "black") {
   counts[id] = initial;
-  initialValues[id] = initial; 
+  initialValues[id] = initial;
 
   const box = document.createElement("div");
 
+  const sizeClass = (size === "small") ? "small" : "";
+
   box.innerHTML = `
-    <button class="btn" onclick="add('${id}', ${step})">＋${step}</button>
-    <div class="count">${label}</div>
-    <div class="count" id="${id}">${initial}</div>
-    <button class="btn" onclick="sub('${id}', ${step})">ー${step}</button>
+    <button class="btn_add ${sizeClass} top" onclick="add('${id}', ${step})">＋${step}</button>
+    <div class="text">${label}</div>
+    <div class="count ${sizeClass}" id="${id}" style="color:${color}">${initial}</div>
+    <button class="btn_sub ${sizeClass} " onclick="sub('${id}', ${step})">ー${step}</button>
   `;
 
   return box;
@@ -21,11 +23,23 @@ function createCounter(id, label, initial, step) {
 // ===== 左右に配置 =====
 const left = document.getElementById("left");
 const right = document.getElementById("right");
-left.appendChild(createCounter("count_lt_2", "〇", 0, 1));
-left.appendChild(createCounter("count_lt_1", "HP", 180, 10));
+left.appendChild(createCounter("count_lt_1", "", 0, 1, "small", "red"));
+left.appendChild(createCounter("count_lt_2", "", 0, 1, "small", "blue"));
+left.appendChild(createCounter("count_lt_3", "", 0, 1, "small", "green"));
+left.appendChild(createCounter("count_lt_4", "", 0, 1, "small", "yellow"));
+left.appendChild(createCounter("count_lt_sl", "盾", 0, 10, "normal", "black"));
+left.appendChild(createCounter("count_lt_df", "防", 0, 10, "normal", "black"));
+left.appendChild(createCounter("count_lt_mp", "〇", 0, 1, "normal", "black"));
+left.appendChild(createCounter("count_lt_hp", "HP", 180, 10, "normal", "black"));
 
-right.appendChild(createCounter("count_rt_1", "HP", 180, 10));
-right.appendChild(createCounter("count_rt_2", "〇", 0, 1));
+right.appendChild(createCounter("count_rt_1", "", 0, 1, "small", "yellow"));
+right.appendChild(createCounter("count_rt_2", "", 0, 1, "small", "green"));
+right.appendChild(createCounter("count_rt_3", "", 0, 1, "small", "blue"));
+right.appendChild(createCounter("count_rt_4", "", 0, 1, "small", "red"));
+right.appendChild(createCounter("count_rt_hp", "HP", 180, 10, "normal", "black"));
+right.appendChild(createCounter("count_rt_mp", "〇", 0, 1, "normal", "black"));
+right.appendChild(createCounter("count_rt_df", "防", 0, 10, "normal", "black"));
+right.appendChild(createCounter("count_rt_sl", "盾", 0, 10, "normal", "black"));
 
 
 
