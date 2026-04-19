@@ -13,33 +13,23 @@
   <h1>カウンター</h1>
   <div class="container" >
   <!-- 左 -->
-    <div>
-      <button class="btn" onclick="add('count1', 10)">＋10</button>
-      <div class="count">HP</div>
-      <div class="count" id="count1">0</div>
-      
-      <button class="btn" onclick="sub('count1', 10)">ー10</button>
-    </div>
+    <div id="left"></div>
 
     <div>
       <button class="btn" onclick="reset()">リセット</button>
       <br>
       <button class="btn" id="dice" onclick="dice()">🎲</button>
+      <div id="diceResult"></div>
     </div>
 
 
     <!-- 右 -->
-    <div>
-      <button class="btn" onclick="add('count2', 10)">＋10</button>
-      <div class="count">HP</div>
-      <div class="count" id="count2">0</div>
-      <button class="btn" onclick="sub('count2', 10)">ー10</button>
-    </div>
+    <div id="right"></div>
   </div>
 
 
 
-  <div id="diceResult"></div>
+
   <script src="script.js"></script>
   
 </body>

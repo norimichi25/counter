@@ -2,8 +2,16 @@ body {
       text-align: center;
       font-family: sans-serif;
     }
+
+
+#left, #right {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
 .count {
-    font-size: 80px;
+    font-size: 50px;
     margin: 5px;
 }
 
